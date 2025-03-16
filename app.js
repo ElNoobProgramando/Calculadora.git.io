@@ -1,5 +1,7 @@
 let history = [];
 let isResultDisplayed = false; // Flag para saber si se mostró un resultado
+let memory = 0; // Variable para almacenar el valor en memoria
+let lastOperation = null; // Variable para almacenar la última operación
 
 function appendToDisplay(value) {
     let display = document.getElementById("display");
@@ -21,16 +23,28 @@ function appendToDisplay(value) {
             return; // No hace nada si el primer valor es un signo
         }
 
-        // Validación para no permitir más de dos decimales en un solo número
+        // Validación para no permitir más de un punto decimal por número
         if (value === ".") {
-            // Si el último número ingresado ya tiene un punto decimal, no agregar otro
             let lastNumber = getLastNumber(display.value);
-            if (lastNumber && countDecimals(lastNumber) >= 2) {
-                return; // No agrega más de dos decimales en un número
+            if (lastNumber && lastNumber.includes(".")) {
+                return; // No permite más de un punto decimal por número
+            }
+        }
+
+        // Validación para no permitir más de un símbolo de % por número
+        if (value === "%") {
+            let lastNumber = getLastNumber(display.value);
+            if (lastNumber && lastNumber.includes("%")) {
+                return; // No permite más de un % por número
             }
         }
 
         display.value += value;
+
+        // Si se agrega un %, calcular el porcentaje automáticamente
+        if (value === "%") {
+            calculatePercentage();
+        }
     }
 }
 
@@ -39,6 +53,8 @@ function clearAll() {
     document.getElementById("history").innerHTML = "";
     history = [];
     isResultDisplayed = false; // Reset flag
+    memory = 0; // Limpiar la memoria
+    lastOperation = null; // Limpiar la última operación
 }
 
 function clearLastDigit() {
@@ -94,17 +110,62 @@ function isOperator(char) {
     return ['+', '-', '*', '/'].includes(char);
 }
 
-// Cuenta los decimales en un número dado
-function countDecimals(value) {
-    let decimalPointIndex = value.indexOf(".");
-    if (decimalPointIndex === -1) {
-        return 0; // No tiene decimales
-    }
-    return value.length - decimalPointIndex - 1; // Contar decimales después del punto
-}
-
 // Extrae el último número de la expresión (después de un operador)
 function getLastNumber(value) {
     let numbers = value.split(/[\+\-\*\/]/); // Divide la cadena por operadores
     return numbers[numbers.length - 1]; // Devuelve el último número
+}
+
+// Funciones para M+, -M, MR y MC
+function memoryAdd() {
+    let display = document.getElementById("display");
+    let value = parseFloat(display.value);
+    if (!isNaN(value)) {
+        if (lastOperation === null) {
+            // Si es la primera operación, guarda el valor en memoria
+            memory = value;
+        } else {
+            // Si no es la primera operación, suma el valor actual a la memoria
+            memory += value;
+        }
+        lastOperation = "M+"; // Indica que se realizó una operación de suma en memoria
+        display.value = ""; // Limpia el display para el siguiente número
+    } else {
+        display.value = "Error: Valor no válido";
+    }
+}
+
+function memorySubtract() {
+    let display = document.getElementById("display");
+    let value = parseFloat(display.value);
+    if (!isNaN(value)) {
+        if (lastOperation === null) {
+            // Si es la primera operación, guarda el valor en memoria
+            memory = -value; // Resta el valor actual
+        } else {
+            // Si no es la primera operación, resta el valor actual de la memoria
+            memory -= value;
+        }
+        lastOperation = "-M"; // Indica que se realizó una operación de resta en memoria
+        display.value = ""; // Limpia el display para el siguiente número
+    } else {
+        display.value = "Error: Valor no válido";
+    }
+}
+
+function memoryRecall() {
+    let display = document.getElementById("display");
+    if (lastOperation === "M+" || lastOperation === "-M") {
+        // Si se presionó M+ o -M previamente, muestra el resultado acumulado
+        display.value = memory;
+        isResultDisplayed = true; // Indica que se mostró un resultado
+    } else {
+        display.value = "Error: No hay memoria acumulada";
+    }
+}
+
+function memoryClear() {
+    memory = 0; // Limpia la memoria
+    lastOperation = null; // Reinicia la última operación
+    document.getElementById("display").value = ""; // Limpia el display
 }
