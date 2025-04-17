@@ -1,0 +1,113 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+  }
+  
+  .container {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    height: 600px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  
+  .left-panel {
+    flex: 1;
+    background: radial-gradient(circle at top left, #476783, #09292b);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .left-panel h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .left-panel p {
+    font-size: 1rem;
+    max-width: 80%;
+    text-align: center;
+  }
+  
+  .right-panel {
+    flex: 1;
+    background: white;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .right-panel h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  button {
+    padding: 0.75rem;
+    width: 100%;
+    background: linear-gradient(to right, #476783, #09292b);
+    border: none;
+    color: white;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background: linear-gradient(to right, #2e3033, #2f4b4b);
+  }
+  
+  #mensaje {
+    color: red;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .back-arrow {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-size: 1.2rem;
+    color: #333;
+    cursor: pointer;
+  }

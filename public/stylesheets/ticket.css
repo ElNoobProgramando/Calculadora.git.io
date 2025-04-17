@@ -1,0 +1,47 @@
+body {
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.ticket-container {
+  background: white;
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color: #476783;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.ticket-item {
+  margin-bottom: 1rem;
+}
+
+.ticket-item strong {
+  color: #333;
+}
+
+ul {
+  padding-left: 1.2rem;
+}
+
+li {
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.total {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
