@@ -41,7 +41,7 @@ app.use(express.static("public"));
 //=================== Routes
 // Landing Page
 app.get("/", appController.landing_page);
-app.get("/landing", isAuth,appController.landing_page);
+app.get("/index", isAuth,appController.landing_page);
 // Login Page
 app.get("/login", appController.login_get);
 app.post("/login", appController.login_post);

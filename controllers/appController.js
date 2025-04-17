@@ -7,7 +7,7 @@ config.passwordgmail = "vlmavpzpbgacuvmi";
 const nodemailer = require('nodemailer');
 
 exports.landing_page = (req, res) => {
-  res.render("landing", {
+  res.render("index", {
     isAuth: req.session.isAuth,
     username: req.session.username,
     email: req.session.email // Añadido para referencia
@@ -23,7 +23,7 @@ exports.login_get = (req, res) => {
 exports.login_post = async (req, res) => {
   if (req.session.isAuth === true) {
     req.session.error = "Ya iniciaste sesión";
-    return res.redirect("/landing");
+    return res.redirect("/index");
   }
 
   const { email, password } = req.body;
@@ -56,7 +56,7 @@ exports.login_post = async (req, res) => {
   req.session.username = user.username;
   req.session.email = user.email; // ¡CRUCIAL! Añadir el email a la sesión
   console.log(`Sesión iniciada para: ${user.email}`);
-  res.redirect("/landing");
+  res.redirect("/index");
 };
 
 exports.register_get = (req, res) => {
@@ -88,7 +88,7 @@ exports.dashboard_get = (req, res) => {
 exports.logout_post = (req, res) => {
   req.session.destroy((err) => {
     if (err) throw err;
-    res.redirect("/landing");
+    res.redirect("/index");
   });
 };
 
