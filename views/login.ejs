@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="/stylesheets/login.css">
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <h1>¡Bienvenido de nuevo!</h1>
+      <p>Puedes iniciar sesión para acceder con tu perfil existente</p>
+    </div>
+    <div class="right-panel">
+      <h2>Iniciar sesión</h2>
+      <form id="loginForm" action="/login" method="post">
+        <div class="input-group">
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+        <button type="submit">Iniciar sesión</button>
+      </form>
+      <div class="form-options">
+        <a href="/register">¿Registrarte?</a>
+      </div>
+      <p id="mensaje"></p>
+    </div>
+  </div>
+</body>
+</html>

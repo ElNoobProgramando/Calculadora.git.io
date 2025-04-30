@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear Usuario</title>
+  <link rel="stylesheet" href="/stylesheets/register.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Crear Sesion</h2>
+    <form id="NewUser" action="/register" method="post">
+      <div class="input-group">
+        <label for="user">Nombre:</label>
+        <input type="text" id="username" name="username" >
+      </div>
+      <div class="input-group">
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" >
+    </div>
+    <div class="input-group">
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" >
+    </div>
+      <button>Crear Usuario</button>
+    </form>
+    <a href="/login" id="mensaje"></a>
+  </div>  
+</body>
+</html>

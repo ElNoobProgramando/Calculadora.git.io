@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Minimalista</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+
+</head>
+<body>
+  <!-- Barra superior -->
+  <div class="top-bar">
+    <a href="#" class="logo">MINIMAL</a>
+    <div class="nav-right">
+      <div id="login-area">
+          <i class="fas fa-user nav-icon"></i>
+          <% if (isAuth) { %>
+            <form action="/mis-compras" method="GET">
+            <p>Bienvenido, <button><strong><%= username %></strong>!</button</p>
+            </form>
+            <form action="/logout" method="POST">
+              <button>Logout</button>
+            </form>
+          <% } else { %>
+            <p>No has iniciado sesión.</p>
+            <a href="/login">Iniciar sesión</a>
+          <% } %>
+          
+        </a>
+      </div>
+      <a href="#" class="nav-link" id="cart-btn">
+        <i class="fas fa-shopping-cart nav-icon"></i>
+        <span>Carrito</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Carrito de compras -->
+  <div class="cart-overlay">
+    <div class="cart-sidebar">
+      <div class="cart-header">
+        <h3>Tu Carrito</h3>
+        <button class="close-cart">&times;</button>
+      </div>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-footer" id="cart-footer">
+        <div class="cart-total" id="cart-total">
+          <strong>Total:</strong>
+          <span class="total-price" id="total-price">$0.00</span>
+        </div>
+        <form id="checkout-form" method="POST" action="/comprar">
+          <% if (isAuth) { %>
+            <button type="submit" class="checkout-btn">Finalizar Compra</button>
+          <% } else { %>
+            <a href="/login" class="checkout-btn">Inicia sesión para comprar</a>
+          <% } %>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="container">
+    <h1 class="page-title">Nuestros Productos</h1>
+    
+    <!-- Grid de productos -->
+    <div class="products-grid">
+      <!-- Producto 1 -->
+      <div class="product-card">
+        <img src="Images/shirt.jpg" alt="Producto 1" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Camiseta</h3>
+          <p class="product-price">$24.99</p>
+          <p class="product-description">Camiseta de algodón orgánico con diseño limpio y moderno.</p>
+          <button class="add-to-cart">Agregar al carrito</button>
+        </div>
+      </div>
+      
+      <!-- Producto 2 -->
+      <div class="product-card">
+        <img src="Images/pantalon.jpg" alt="Producto 2" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Pantalón Negro</h3>
+          <p class="product-price">$49.99</p>
+          <p class="product-description">Pantalón elegante para cualquier ocasión, tejido resistente.</p>
+          <button class="add-to-cart">Agregar al carrito</button>
+        </div>
+      </div>
+      
+      <!-- Producto 3 -->
+      <div class="product-card">
+        <img src="Images/zapatos_urbanos.jpg" alt="Producto 3" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Zapatos Urbanos</h3>
+          <p class="product-price">$79.99</p>
+          <p class="product-description">Zapatos cómodos y modernos para el día a día.</p>
+          <button class="add-to-cart">Agregar al carrito</button>
+        </div>
+      </div>
+      
+      <!-- Producto 4 -->
+      <div class="product-card">
+        <img src="Images/reloj.jpg" alt="Producto 4" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Reloj Clásico</h3>
+          <p class="product-price">$129.99</p>
+          <p class="product-description">Reloj de pulsera con diseño atemporal y resistente al agua.</p>
+          <button class="add-to-cart">Agregar al carrito</button>
+        </div>
+      </div>
+      
+      <!-- Producto 5 -->
+      <div class="product-card">
+        <img src="Images/mochila.jpg" alt="Producto 5" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Mochila Ligera</h3>
+          <p class="product-price">$59.99</p>
+          <p class="product-description">Mochila resistente con múltiples compartimentos.</p>
+          <button class="add-to-cart">Agregar al carrito</button>
+        </div>
+      </div>
+      
+      <!-- Producto 6 -->
+      <div class="product-card">
+        <img src="Images/lentes.jpg" alt="Producto 6" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Gafas de Sol</h3>
+          <p class="product-price">$39.99</p>
+          <p class="product-description">Protección UV400 con estilo moderno y montura duradera.</p>
+          <button class="add-to-cart">Agregar al carrito</button>
+        </div>
+      </div>
+      
+      <!-- Producto 7 -->
+      <div class="product-card">
+        <img src="Images/libreta.jpg" alt="Producto 7" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Libreta Artesanal</h3>
+          <p class="product-price">$19.99</p>
+          <p class="product-description">Libreta con papel reciclado y cubierta de tela.</p>
+          <button class="add-to-cart">Agregar al carrito</button>
+        </div>
+      </div>
+      
+      <!-- Producto 8 -->
+      <div class="product-card">
+        <img src="Images/juego de te.jpg" alt="Producto 8" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Juego de Té</h3>
+          <p class="product-price">$34.99</p>
+          <p class="product-description">Set de 4 tazas con platos, diseño minimalista.</p>
+          <button class="add-to-cart">Agregar al carrito</button>
+        </div>
+      </div>
+      
+      <!-- Producto 9 -->
+      <div class="product-card">
+        <img src="Images/lampara.jpg" alt="Producto 9" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Lámpara de Mesa</h3>
+          <p class="product-price">$45.99</p>
+          <p class="product-description">Iluminación cálida con base de madera y diseño escandinavo.</p>
+          <button class="add-to-cart">Agregar al carrito</button>
+        </div>
+      </div>
+      
+      <!-- Producto 10 -->
+      <div class="product-card">
+        <img src="Images/Portátil Sleeve.jpg" alt="Producto 10" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Portátil Sleeve</h3>
+          <p class="product-price">$29.99</p>
+          <p class="product-description">Funda protectora para portátiles hasta 15".</p>
+          <button class="add-to-cart">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Pie de página -->
+  <footer>
+    <div class="footer-links">
+      <a href="#" class="footer-link">Inicio</a>
+      <a href="#" class="footer-link">Productos</a>
+      <a href="#" class="footer-link">Nosotros</a>
+      <a href="#" class="footer-link">Contacto</a>
+    </div>
+    <p class="copyright">© 2023 Tienda Minimalista. Todos los derechos reservados.</p>
+  </footer>
+</body>
+<script src="/scripts/main.js"></script>
+</html>

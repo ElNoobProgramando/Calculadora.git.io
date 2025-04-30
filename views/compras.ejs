@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Compras</title>
+    <link rel="stylesheet" href="/stylesheets/compras.css">
+
+</head>
+<body>
+    <div class="compras-container">
+        <h2>Historial de Compras de <%= username %></h2>
+      
+        <% if (compras.length === 0) { %>
+          <p class="sin-compras">No tienes compras aún.</p>
+        <% } else { %>
+          <% compras.forEach(compra => { %>
+            <div class="compra">
+              <p><strong>Fecha:</strong> <%= compra.fecha.toLocaleDateString() %></p>
+              <p><strong>Total:</strong> $<%= compra.grantotal.toFixed(2) %></p>
+              <p><strong>Productos:</strong></p>
+              <ul class="productos">
+                <% compra.productos.forEach(p => { %>
+                  <li><%= p.titulo %> (x<%= p.cantidad %>) - $<%= p.precio %></li>
+                <% }) %>
+              </ul>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+</body>
+</html>
+
+
+

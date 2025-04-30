@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ticket de Compra</title>
+  <link rel="stylesheet" href="/stylesheets/ticket.css">
+</head>
+<body>
+  <div class="ticket-container">
+    <h2>Ticket de Compra de <%= username %></h2>
+
+    <div class="ticket-item">
+      <strong>Fecha:</strong> <%= compra.fecha.toLocaleDateString() %>
+    </div>
+
+    <div class="ticket-item">
+      <strong>Email:</strong> <%= compra.email %>
+    </div>
+
+    <div class="ticket-item">
+      <strong>Productos:</strong>
+      <ul>
+        <% compra.productos.forEach(p => { %>
+          <li><%= p.titulo %> (x<%= p.cantidad %>) - $<%= p.precio.toFixed(2) %></li>
+        <% }) %>
+      </ul>
+    </div>
+
+    <div class="total">
+      Total: $<%= compra.grantotal.toFixed(2) %>
+    </div>
+  </div>
+</body>
+</html>
